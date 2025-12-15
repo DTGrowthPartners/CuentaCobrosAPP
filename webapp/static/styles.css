@@ -506,3 +506,315 @@ textarea {
     background: #374151;
 }
 
+/* --- Mobile Navbar --- */
+.mobile-navbar {
+    display: none;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: linear-gradient(135deg, #020617 0%, #0b1020 50%, #111827 100%) !important;
+    border-top: 1px solid #1f2937 !important;
+    box-shadow: 0 -8px 32px rgba(0,0,0,0.8), 0 -2px 8px rgba(56,189,248,0.1) !important;
+    z-index: 1000 !important;
+    padding: 10px 0 !important;
+    padding-bottom: max(10px, env(safe-area-inset-bottom)) !important;
+}
+
+.mobile-navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+    opacity: 0.3;
+}
+
+.mobile-navbar-items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 8px;
+}
+
+.mobile-nav-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    padding: 10px 8px !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    text-decoration: none !important;
+    color: #6b7280 !important;
+    background: transparent !important;
+    border: none !important;
+    min-width: 70px !important;
+    flex: 1 !important;
+    max-width: 90px !important;
+    position: relative !important;
+    -webkit-tap-highlight-color: transparent !important;
+    font-family: var(--font-family) !important;
+}
+
+.mobile-nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
+    border-radius: 0 0 999px 999px;
+    transition: width 0.3s ease;
+}
+
+.mobile-nav-item:active {
+    transform: scale(0.95);
+}
+
+.mobile-nav-item.active {
+    color: #38bdf8 !important;
+    background: radial-gradient(circle at center, rgba(56,189,248,0.15), transparent 70%) !important;
+}
+
+.mobile-nav-item.active::before {
+    width: 40px;
+}
+
+.mobile-nav-icon {
+    font-size: 1.5rem !important;
+    line-height: 1 !important;
+    filter: grayscale(0.3) !important;
+    transition: all 0.3s ease !important;
+    display: block !important;
+}
+
+.mobile-nav-item.active .mobile-nav-icon {
+    filter: grayscale(0) drop-shadow(0 0 8px rgba(56,189,248,0.5)) !important;
+    transform: scale(1.1) !important;
+}
+
+.mobile-nav-label {
+    font-size: 0.65rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    letter-spacing: 0.02em !important;
+    text-transform: uppercase !important;
+    display: block !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ajustes para vista mobile */
+@media (max-width: 768px) {
+    .mobile-navbar {
+        display: block !important;
+    }
+
+    /* Ocultar elementos solo para desktop */
+    .desktop-only {
+        display: none !important;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-bottom: 90px;
+        margin-bottom: 0;
+    }
+
+    .container {
+        padding-bottom: 20px;
+    }
+
+    .main-header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 16px;
+        margin-bottom: 16px;
+        display: flex !important;
+    }
+
+    .main-header-left {
+        width: 100%;
+        display: flex !important;
+        justify-content: center;
+    }
+
+    .main-header-right {
+        width: 100%;
+        justify-content: space-between;
+        display: flex !important;
+    }
+
+    /* Ajustar tamaño del logo en mobile */
+    .app-logo-title img {
+        width: 160px !important;
+        max-width: 160px;
+        height: auto;
+    }
+
+    .user-pill {
+        display: flex !important;
+    }
+
+    .user-avatar {
+        display: flex !important;
+    }
+
+    .user-name {
+        display: block !important;
+        font-size: 0.8rem;
+    }
+
+    .btn-ghost {
+        display: inline-block !important;
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+
+    .card {
+        scroll-margin-top: 20px;
+        margin-bottom: 0;
+    }
+
+    /* Ocultar secciones según navegación */
+    .card {
+        display: none;
+    }
+
+    .card.active-section {
+        display: block;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    /* Ajustes específicos para la card de crear cuenta */
+    #crear-cuenta {
+        padding: 12px;
+    }
+
+    #crear-cuenta h2 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    #crear-cuenta .form-group {
+        margin-bottom: 10px;
+    }
+
+    #crear-cuenta label {
+        font-size: 0.85rem;
+        margin-bottom: 4px;
+    }
+
+    #crear-cuenta input,
+    #crear-cuenta select,
+    #crear-cuenta textarea {
+        font-size: 0.85rem;
+        padding: 6px 8px;
+    }
+
+    #crear-cuenta hr {
+        margin: 10px 0;
+    }
+
+    #crear-cuenta .btn-block {
+        padding: 8px;
+        font-size: 0.85rem;
+        margin-top: 8px;
+    }
+
+    /* Asegurar que los modales estén por encima del navbar */
+    .modal {
+        z-index: 1001;
+    }
+
+    /* Ajustes para botones dentro de las cards en mobile */
+    .card .btn-block {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    /* Modal de gestión en mobile */
+    .modal-content {
+        width: 95%;
+        max-width: 95%;
+        margin: 2% auto;
+        max-height: 90vh;
+    }
+
+    #add-client-section h3,
+    #add-service-section h3 {
+        font-size: 1rem;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        color: var(--text-primary);
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    #management-type {
+        font-size: 0.9rem;
+    }
+
+    /* Ajustar preview del PDF en mobile */
+    .pdf-preview {
+        margin-top: 6px;
+        padding-top: 6px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .pdf-preview p {
+        font-size: 0.75rem;
+        margin-bottom: 4px;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .pdf-preview iframe {
+        width: 60% !important;
+        max-width: 200px !important;
+        height: 110px !important;
+        max-height: 110px;
+        border-radius: 6px;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .alert {
+        font-size: 0.75rem;
+        padding: 5px 8px;
+        margin-bottom: 6px;
+        border-radius: 6px;
+    }
+
+    .alert-success {
+        background: rgba(34, 197, 94, 0.1);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        color: #22c55e;
+    }
+}
+

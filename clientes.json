@@ -1,14 +1,4 @@
 {
-  "arismendy": {
-    "nombre_completo": "Arismendy Andrade S.A.S",
-    "direccion": "Cra 56 # 2A – 67 KM 2 Vía A Mamonal Br, Cartagena de Indias, Bolívar",
-    "nit": "806014651 -1"
-  },
-  "auto_express": {
-    "nombre_completo": "Autoexpress detailing SAS",
-    "direccion": "Cra 83 #26-18, Barrio San Fernando, Cartagena.",
-    "nit": "901794841-2"
-  },
   "bebidas_1a": {
     "nombre_completo": "Bebidas & Licores 1A",
     "direccion": "Tv. 74 #31b-40, Los Alpes, Cartagena",

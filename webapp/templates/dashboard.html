@@ -6,7 +6,7 @@
 <div class="dashboard-grid">
 
     <!-- Sección Crear Cuenta -->
-    <div class="card" id="crear-cuenta">
+    <div class="card active-section" id="crear-cuenta">
         <h2 data-subtitle="Crear y descargar PDF rápidamente">Generar Nueva Cuenta de Cobro</h2>
 
         {% if success_message %}
@@ -92,65 +92,65 @@
             <button type="submit" class="btn btn-primary btn-block">Generar Cuenta</button>
         </form>
 
-        <!-- Sección para añadir nuevos servicios (Acordión) -->
-        <div class="accordion">
+        <!-- Sección para añadir nuevos servicios (Acordión) - Solo Desktop -->
+        <div class="accordion desktop-only">
             <div class="accordion-header" onclick="toggleAccordion('service-accordion')">
                 <h3>📝 Añadir Nuevo Servicio</h3>
                 <span class="accordion-icon">+</span>
             </div>
             <div class="accordion-content" id="service-accordion">
-                <form id="add-service-form" class="add-form">
+                <form class="add-form">
                     <div class="form-group">
-                        <label for="new-service-name">Nombre del Servicio:</label>
-                        <input type="text" id="new-service-name" required placeholder="Ej: Desarrollo de App Móvil">
+                        <label for="desktop-service-name">Nombre del Servicio:</label>
+                        <input type="text" id="desktop-service-name" required placeholder="Ej: Desarrollo de App Móvil">
                     </div>
                     <div class="form-group">
-                        <label for="new-service-desc">Descripción:</label>
-                        <textarea id="new-service-desc" required placeholder="Descripción detallada del servicio"></textarea>
+                        <label for="desktop-service-desc">Descripción:</label>
+                        <textarea id="desktop-service-desc" required placeholder="Descripción detallada del servicio"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="new-service-cat">Categoría:</label>
-                        <input type="text" id="new-service-cat" required placeholder="Ej: Desarrollo">
+                        <label for="desktop-service-cat">Categoría:</label>
+                        <input type="text" id="desktop-service-cat" required placeholder="Ej: Desarrollo">
                     </div>
-                    <button type="button" onclick="addNewService()" class="btn btn-primary btn-block">Añadir Servicio</button>
+                    <button type="button" onclick="addNewServiceDesktop()" class="btn btn-primary btn-block">Añadir Servicio</button>
                 </form>
             </div>
         </div>
 
-        <!-- Sección para añadir nuevos clientes (Acordión) -->
-        <div class="accordion">
+        <!-- Sección para añadir nuevos clientes (Acordión) - Solo Desktop -->
+        <div class="accordion desktop-only">
             <div class="accordion-header" onclick="toggleAccordion('client-accordion')">
                 <h3>👥 Añadir Nuevo Cliente</h3>
                 <span class="accordion-icon">+</span>
             </div>
             <div class="accordion-content" id="client-accordion">
-                <form id="add-client-form" class="add-form">
+                <form class="add-form">
                     <div class="form-group">
-                        <label for="new-client-nickname">Nickname (identificador):</label>
-                        <input type="text" id="new-client-nickname" required placeholder="Ej: nuevo_cliente">
+                        <label for="desktop-client-nickname">Nickname (identificador):</label>
+                        <input type="text" id="desktop-client-nickname" required placeholder="Ej: nuevo_cliente">
                     </div>
                     <div class="form-group">
-                        <label for="new-client-name">Nombre Completo:</label>
-                        <input type="text" id="new-client-name" required placeholder="Ej: Empresa Nueva S.A.S">
+                        <label for="desktop-client-name">Nombre Completo:</label>
+                        <input type="text" id="desktop-client-name" required placeholder="Ej: Empresa Nueva S.A.S">
                     </div>
                     <div class="form-group">
-                        <label for="new-client-address">Dirección:</label>
-                        <input type="text" id="new-client-address" required placeholder="Ej: Cra 10 #20-30, Cartagena">
+                        <label for="desktop-client-address">Dirección:</label>
+                        <input type="text" id="desktop-client-address" required placeholder="Ej: Cra 10 #20-30, Cartagena">
                     </div>
                     <div class="form-group">
-                        <label for="new-client-nit">NIT:</label>
-                        <input type="text" id="new-client-nit" required placeholder="Ej: 9012345678">
+                        <label for="desktop-client-nit">NIT:</label>
+                        <input type="text" id="desktop-client-nit" required placeholder="Ej: 9012345678">
                     </div>
-                    <button type="button" onclick="addNewClient()" class="btn btn-primary btn-block">Añadir Cliente</button>
+                    <button type="button" onclick="addNewClientDesktop()" class="btn btn-primary btn-block">Añadir Cliente</button>
                 </form>
             </div>
         </div>
 
-        <!-- Botón de Gestión -->
-        <button type="button" onclick="openManagementModal()" class="btn btn-primary btn-block" style="margin-top: 20px;" id="gestion">Gestión de Clientes y Servicios</button>
+        <!-- Botón de Gestión - Solo Desktop -->
+        <button type="button" onclick="openManagementModal()" class="btn btn-primary btn-block desktop-only" style="margin-top: 20px;">Gestión de Clientes y Servicios</button>
 
-        <!-- Botón para cambiar base del PDF -->
-        <button type="button" onclick="openBaseModal()" class="btn btn-primary btn-block" style="margin-top: 10px;" id="personalizacion">Cambiar Base del PDF</button>
+        <!-- Botón para cambiar base del PDF - Solo Desktop -->
+        <button type="button" onclick="openBaseModal()" class="btn btn-primary btn-block desktop-only" style="margin-top: 10px;" id="personalizacion">Cambiar Base del PDF</button>
 
         <!-- Modal de Gestión -->
         <div id="management-modal" class="modal" style="display: none;">
@@ -160,15 +160,61 @@
 
                 <!-- Selección de tipo -->
                 <div class="form-group">
-                    <label>¿Qué deseas gestionar?</label>
-                    <select id="management-type" onchange="loadManagementList()">
-                        <option value="">-- Selecciona --</option>
-                        <option value="client">Cliente</option>
-                        <option value="service">Servicio</option>
+                    <label>¿Qué deseas hacer?</label>
+                    <select id="management-type" onchange="handleManagementAction()">
+                        <option value="">-- Selecciona una opción --</option>
+                        <option value="add-client">➕ Añadir Nuevo Cliente</option>
+                        <option value="edit-client">✏️ Editar/Eliminar Cliente</option>
+                        <option value="add-service">➕ Añadir Nuevo Servicio</option>
+                        <option value="edit-service">✏️ Editar/Eliminar Servicio</option>
                     </select>
                 </div>
 
-                <!-- Lista de elementos -->
+                <!-- Formulario para añadir cliente -->
+                <div id="add-client-section" style="display: none;">
+                    <h3>Añadir Nuevo Cliente</h3>
+                    <form id="add-client-form" class="add-form">
+                        <div class="form-group">
+                            <label for="new-client-nickname">Nickname (identificador):</label>
+                            <input type="text" id="new-client-nickname" required placeholder="Ej: nuevo_cliente">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-client-name">Nombre Completo:</label>
+                            <input type="text" id="new-client-name" required placeholder="Ej: Empresa Nueva S.A.S">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-client-address">Dirección:</label>
+                            <input type="text" id="new-client-address" required placeholder="Ej: Cra 10 #20-30, Cartagena">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-client-nit">NIT:</label>
+                            <input type="text" id="new-client-nit" required placeholder="Ej: 9012345678">
+                        </div>
+                        <button type="button" onclick="addNewClient()" class="btn btn-primary btn-block">Añadir Cliente</button>
+                    </form>
+                </div>
+
+                <!-- Formulario para añadir servicio -->
+                <div id="add-service-section" style="display: none;">
+                    <h3>Añadir Nuevo Servicio</h3>
+                    <form id="add-service-form" class="add-form">
+                        <div class="form-group">
+                            <label for="new-service-name">Nombre del Servicio:</label>
+                            <input type="text" id="new-service-name" required placeholder="Ej: Desarrollo de App Móvil">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-service-desc">Descripción:</label>
+                            <textarea id="new-service-desc" required placeholder="Descripción detallada del servicio"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-service-cat">Categoría:</label>
+                            <input type="text" id="new-service-cat" required placeholder="Ej: Desarrollo">
+                        </div>
+                        <button type="button" onclick="addNewService()" class="btn btn-primary btn-block">Añadir Servicio</button>
+                    </form>
+                </div>
+
+                <!-- Lista de elementos para editar/eliminar -->
                 <div id="management-list" style="display: none;">
                     <h3 id="list-title"></h3>
                     <div id="items-list"></div>
@@ -718,7 +764,7 @@
 </script>
 
 <script>
-    // Función para manejar el acordión
+    // Función para manejar el acordión (Desktop)
     function toggleAccordion(accordionId) {
         const content = document.getElementById(accordionId);
         const icon = content.previousElementSibling.querySelector('.accordion-icon');
@@ -739,6 +785,72 @@
             accordion.style.display = 'none';
         });
     });
+
+    // Funciones para añadir servicios y clientes desde Desktop
+    async function addNewServiceDesktop() {
+        const name = document.getElementById('desktop-service-name').value;
+        const desc = document.getElementById('desktop-service-desc').value;
+        const cat = document.getElementById('desktop-service-cat').value;
+
+        if (!name || !desc || !cat) {
+            Swal.fire('Por favor complete todos los campos');
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/add_service', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `nombre=${encodeURIComponent(name)}&descripcion=${encodeURIComponent(desc)}&categoria=${encodeURIComponent(cat)}`
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                Swal.fire('Servicio añadido exitosamente');
+                location.replace(location.href);
+            } else {
+                Swal.fire('Error al añadir el servicio: ' + result.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            Swal.fire('Error al comunicarse con el servidor');
+        }
+    }
+
+    async function addNewClientDesktop() {
+        const nickname = document.getElementById('desktop-client-nickname').value;
+        const name = document.getElementById('desktop-client-name').value;
+        const address = document.getElementById('desktop-client-address').value;
+        const nit = document.getElementById('desktop-client-nit').value;
+
+        if (!nickname || !name || !address || !nit) {
+            Swal.fire('Por favor complete todos los campos');
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/add_client', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `nickname=${encodeURIComponent(nickname)}&nombre_completo=${encodeURIComponent(name)}&direccion=${encodeURIComponent(address)}&nit=${encodeURIComponent(nit)}`
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                Swal.fire('Cliente añadido exitosamente');
+                location.replace(location.href);
+            } else {
+                Swal.fire('Error al añadir el cliente: ' + result.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            Swal.fire('Error al comunicarse con el servidor');
+        }
+    }
 
     // Función para eliminar facturas
     async function deleteInvoice(filename) {
@@ -850,22 +962,46 @@
     function openManagementModal() {
         document.getElementById('management-modal').style.display = 'block';
         document.getElementById('management-type').value = '';
-        document.getElementById('management-list').style.display = 'none';
-        document.getElementById('edit-form').style.display = 'none';
+        hideAllManagementSections();
     }
 
     function closeManagementModal() {
         document.getElementById('management-modal').style.display = 'none';
+        // Limpiar formularios
+        document.getElementById('add-client-form').reset();
+        document.getElementById('add-service-form').reset();
     }
 
-    async function loadManagementList() {
-        const type = document.getElementById('management-type').value;
-        if (!type) {
-            document.getElementById('management-list').style.display = 'none';
-            document.getElementById('edit-form').style.display = 'none';
-            return;
-        }
+    function hideAllManagementSections() {
+        document.getElementById('add-client-section').style.display = 'none';
+        document.getElementById('add-service-section').style.display = 'none';
+        document.getElementById('management-list').style.display = 'none';
+        document.getElementById('edit-form').style.display = 'none';
+    }
 
+    async function handleManagementAction() {
+        const action = document.getElementById('management-type').value;
+        hideAllManagementSections();
+
+        if (!action) return;
+
+        switch(action) {
+            case 'add-client':
+                document.getElementById('add-client-section').style.display = 'block';
+                break;
+            case 'add-service':
+                document.getElementById('add-service-section').style.display = 'block';
+                break;
+            case 'edit-client':
+                await loadManagementList('client');
+                break;
+            case 'edit-service':
+                await loadManagementList('service');
+                break;
+        }
+    }
+
+    async function loadManagementList(type) {
         try {
             let response;
             if (type === 'client') {
@@ -1278,7 +1414,151 @@
     
     document.addEventListener('DOMContentLoaded', function() {
         loadEmpresaFieldVisibility();
+        initMobileNavbar();
     });
+
+    // Variable para guardar la última sección real visitada
+    let lastActiveSection = 'crear-cuenta';
+
+    // Funcionalidad del navbar mobile
+    function initMobileNavbar() {
+        const navItems = document.querySelectorAll('.mobile-nav-item');
+        const sections = document.querySelectorAll('.card');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                const sectionId = this.getAttribute('data-section');
+
+                // Si es gestión o personalización, solo abrir el modal (ya tiene onclick)
+                if (sectionId === 'gestion' || sectionId === 'personalizacion') {
+                    // Activar visualmente el botón
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                    return;
+                }
+
+                // Para crear-cuenta e historial, cambiar la sección visible
+                navItems.forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+
+                // Actualizar la última sección real visitada
+                lastActiveSection = sectionId;
+
+                sections.forEach(section => {
+                    section.classList.remove('active-section');
+                    if (section.id === sectionId) {
+                        section.classList.add('active-section');
+                        // Scroll suave a la sección
+                        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    }
+
+    // Modificar las funciones de modales para que actualicen el estado del navbar
+    const originalOpenManagementModal = openManagementModal;
+    openManagementModal = function() {
+        originalOpenManagementModal();
+        // No hacer nada más, el botón ya se activó en initMobileNavbar
+    };
+
+    const originalCloseManagementModal = closeManagementModal;
+    closeManagementModal = function() {
+        originalCloseManagementModal();
+        // Restaurar la última sección activa
+        const navItems = document.querySelectorAll('.mobile-nav-item');
+        navItems.forEach(nav => nav.classList.remove('active'));
+
+        const lastNavItem = document.querySelector(`.mobile-nav-item[data-section="${lastActiveSection}"]`);
+        if (lastNavItem) {
+            lastNavItem.classList.add('active');
+        }
+
+        // Restaurar la visibilidad de la sección correcta
+        const sections = document.querySelectorAll('.card');
+        sections.forEach(section => {
+            section.classList.remove('active-section');
+            if (section.id === lastActiveSection) {
+                section.classList.add('active-section');
+            }
+        });
+    };
+
+    const originalOpenBaseModal = openBaseModal;
+    openBaseModal = function() {
+        originalOpenBaseModal();
+        // No hacer nada más, el botón ya se activó en initMobileNavbar
+    };
+
+    const originalCloseBaseModal = closeBaseModal;
+    closeBaseModal = function() {
+        originalCloseBaseModal();
+        // Restaurar la última sección activa
+        const navItems = document.querySelectorAll('.mobile-nav-item');
+        navItems.forEach(nav => nav.classList.remove('active'));
+
+        const lastNavItem = document.querySelector(`.mobile-nav-item[data-section="${lastActiveSection}"]`);
+        if (lastNavItem) {
+            lastNavItem.classList.add('active');
+        }
+
+        // Restaurar la visibilidad de la sección correcta
+        const sections = document.querySelectorAll('.card');
+        sections.forEach(section => {
+            section.classList.remove('active-section');
+            if (section.id === lastActiveSection) {
+                section.classList.add('active-section');
+            }
+        });
+    };
     </script>
-    
-    {% endblock %}
+
+{% endblock %}
+
+{% block mobile_navbar %}
+<style>
+    /* Forzar estilos del navbar mobile */
+    @media (max-width: 768px) {
+        body {
+            padding-bottom: 80px !important;
+        }
+    }
+</style>
+
+<nav class="mobile-navbar" style="display: none;">
+    <div class="mobile-navbar-items">
+        <button class="mobile-nav-item active" data-section="crear-cuenta">
+            <span class="mobile-nav-icon">✏️</span>
+            <span class="mobile-nav-label">Crear</span>
+        </button>
+        <button class="mobile-nav-item" data-section="gestion" onclick="openManagementModal()">
+            <span class="mobile-nav-icon">⚙️</span>
+            <span class="mobile-nav-label">Gestión</span>
+        </button>
+        <button class="mobile-nav-item" data-section="personalizacion" onclick="openBaseModal()">
+            <span class="mobile-nav-icon">🎨</span>
+            <span class="mobile-nav-label">Diseño</span>
+        </button>
+        <button class="mobile-nav-item" data-section="historial">
+            <span class="mobile-nav-icon">📄</span>
+            <span class="mobile-nav-label">Historial</span>
+        </button>
+    </div>
+</nav>
+
+<script>
+    // Mostrar navbar en mobile
+    if (window.innerWidth <= 768) {
+        document.querySelector('.mobile-navbar').style.display = 'block';
+    }
+
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 768) {
+            document.querySelector('.mobile-navbar').style.display = 'block';
+        } else {
+            document.querySelector('.mobile-navbar').style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}

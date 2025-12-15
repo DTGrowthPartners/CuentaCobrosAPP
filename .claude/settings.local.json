@@ -3,7 +3,8 @@
     "allow": [
       "Bash(pip install:*)",
       "Bash(uvicorn:*)",
-      "Bash(python -m uvicorn:*)"
+      "Bash(python -m uvicorn:*)",
+      "Bash(python -m webapp.app:*)"
     ]
   }
 }
