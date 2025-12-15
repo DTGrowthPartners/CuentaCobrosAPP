@@ -1,0 +1,508 @@
+/* --- Variables y Estilos Globales --- */
+:root {
+    /* Fondo y superficies */
+    --bg-main: #050816;         /* fondo general */
+    --bg-elevated: #0b1020;     /* tarjetas / paneles */
+    --bg-elevated-soft: #111827;
+
+    /* Texto */
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+
+    /* Marca / acentos (basado en panel azul-morado) */
+    --primary-color: #2563eb;   /* azul botones principales */
+    --accent-color: #7c3aed;    /* morado para detalles */
+    --accent-soft: #1f2937;
+
+    /* Estados */
+    --success-color: #22c55e;
+    --warning-color: #eab308;
+    --danger-color: #ef4444;
+
+    /* Bordes y separadores */
+    --border-color: #1f2937;
+    --card-border-color: #111827;
+
+    --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 24px 40px;
+}
+
+/* --- Encabezado --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #020617, #0b1020);
+    padding: 16px 24px;
+    border-radius: 16px;
+    border: 1px solid var(--card-border-color);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+    margin-bottom: 24px;
+}
+
+.app-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.app-logo-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 0, #38bdf8, #7c3aed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #f9fafb;
+}
+
+.app-logo-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.app-logo-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.main-header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background-color: var(--accent-soft);
+}
+
+.user-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #38bdf8, #6366f1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.user-name {
+    font-size: 0.85rem;
+}
+
+/* --- Botones --- */
+.btn {
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.08s ease, box-shadow 0.18s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: #f9fafb;
+    box-shadow: 0 12px 25px rgba(37,99,235,0.45);
+}
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 35px rgba(37,99,235,0.6);
+}
+
+.btn-secondary {
+    background-color: #111827;
+    color: var(--text-secondary);
+    border-color: #1f2937;
+}
+.btn-secondary:hover {
+    border-color: #4b5563;
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: #1f2937;
+}
+.btn-ghost:hover {
+    background-color: #020617;
+}
+
+.btn-danger {
+    background-color: #ef4444;
+    color: white;
+    border-color: #dc2626;
+}
+.btn-danger:hover {
+    background-color: #dc2626;
+}
+
+.btn-block {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.95rem;
+}
+
+/* --- Formularios --- */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 9px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background-color: #020617;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 1px rgba(56,189,248,0.4);
+    background-color: #020617;
+}
+
+textarea {
+    resize: vertical;
+}
+/* --- Alertas --- */
+.alert {
+    padding: 10px 12px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    border: 1px solid transparent;
+}
+
+.alert-danger {
+    background-color: rgba(248,113,113,0.16);
+    color: #fecaca;
+    border-color: rgba(248,113,113,0.5);
+}
+
+.alert-success {
+    background-color: rgba(52,211,153,0.16);
+    color: #bbf7d0;
+    border-color: rgba(52,211,153,0.5);
+}
+/* --- Página de Login --- */
+.login-container {
+    max-width: 420px;
+    margin: 60px auto;
+}
+
+.login-box {
+    background: radial-gradient(circle at 0 0, rgba(56,189,248,0.12), transparent 55%), #020617;
+    padding: 26px 24px 24px;
+    border-radius: 22px;
+    border: 1px solid #111827;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+}
+
+.login-box h2 {
+    text-align: left;
+    color: #e5e7eb;
+    margin-bottom: 18px;
+    font-size: 1.1rem;
+}
+
+.credentials-info {
+    margin-top: 20px;
+    padding: 14px 16px;
+    background: rgba(15,23,42,0.9);
+    border-radius: 16px;
+    border: 1px dashed #1f2937;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.credentials-info span {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    background: rgba(15,23,42,0.9);
+    padding: 2px 6px;
+    border-radius: 999px;
+    border: 1px solid #1f2937;
+}
+
+/* --- Dashboard --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.card {
+    background: radial-gradient(circle at 0 0, rgba(56,189,248,0.06), transparent 55%), #0b1020;
+    padding: 20px 20px 18px;
+    border-radius: 18px;
+    border: 1px solid var(--card-border-color);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.4);
+}
+
+.card h2 {
+    color: #e5e7eb;
+    margin-top: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #111827;
+    padding-bottom: 12px;
+}
+
+.card h2::after {
+    content: attr(data-subtitle);
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.servicio-item {
+    border-radius: 14px;
+    border: 1px solid #111827;
+    padding: 14px 14px 10px;
+    margin-bottom: 12px;
+    background-color: rgba(15,23,42,0.85);
+}
+
+.input-with-dropdown {
+    display: flex;
+    gap: 8px;
+}
+
+.input-with-dropdown select {
+    flex: 1;
+    min-width: 200px;
+}
+
+.input-with-dropdown input {
+    flex: 2;
+}
+
+.add-new-section {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #111827;
+}
+
+.add-new-section h3 {
+    font-size: 0.95rem;
+    color: #e5e7eb;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.add-form {
+    display: grid;
+    gap: 12px;
+}
+
+.add-form .btn-secondary {
+    margin-top: 8px;
+    justify-content: center;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.pdf-preview {
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.pdf-preview iframe {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.history-list table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.history-list thead {
+    background-color: #020617;
+}
+
+.history-list th, .history-list td {
+    text-align: center;
+    padding: 10px 8px;
+    border-bottom: 1px solid #111827;
+}
+
+.history-list th {
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.75rem;
+}
+
+.history-list tbody tr:hover {
+    background-color: rgba(15,23,42,0.9);
+}
+
+.history-list a {
+    color: #38bdf8;
+    font-weight: 500;
+    text-decoration: none;
+}
+.history-list a:hover {
+    text-decoration: underline;
+}
+
+/* --- Footer --- */
+.main-footer {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid #111827;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* --- Estilos para Acordiones --- */
+.accordion {
+    margin-top: 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #111827;
+    background-color: rgba(15,23,42,0.6);
+}
+
+.accordion-header {
+    padding: 12px 16px;
+    background: linear-gradient(90deg, #020617, #0b1020);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #111827;
+    transition: background 0.2s ease;
+}
+
+.accordion-header:hover {
+    background: linear-gradient(90deg, #0b1020, #111827);
+}
+
+.accordion-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.accordion-icon {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-secondary);
+    transition: transform 0.2s ease;
+}
+
+.accordion-content {
+    padding: 16px;
+    transition: all 0.3s ease;
+}
+
+.add-form {
+    margin-top: 12px;
+}
+
+.add-form textarea {
+    height: 80px;
+}
+
+/* --- Nuevos estilos para el dashboard --- */
+.input-with-dropdown {
+    display: flex;
+    gap: 8px;
+}
+
+.input-with-dropdown select {
+    flex: 1;
+    padding: 9px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background-color: #020617;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.input-with-dropdown input[type="text"] {
+    flex: 2;
+}
+
+
+/* --- Scrollbars (opcional) --- */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1f2937;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #374151;
+}
+
